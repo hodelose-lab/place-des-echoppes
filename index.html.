@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Place des Échoppes</title>
+<style>
+:root {
+  --vert:#253d35;
+  --or:#c69a55;
+  --creme:#f8f4eb;
+  --texte:#302d28;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  font-family:Georgia,serif;
+  color:var(--texte);
+  background:var(--creme);
+}
+header {
+  background:var(--vert);
+  color:white;
+  padding:17px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+.logo {
+  font-size:clamp(21px,4vw,31px);
+  font-weight:bold;
+  color:#f4d6a0;
+}
+nav {display:flex;gap:18px;flex-wrap:wrap}
+nav a {color:white;text-decoration:none;font-size:14px}
+nav a:hover {color:var(--or)}
+.hero {
+  min-height:420px;
+  background:
+    linear-gradient(90deg,rgba(21,35,29,.85),rgba(21,35,29,.15)),
+    url("place-medievale.png") center/cover;
+  display:flex;
+  align-items:center;
+  padding:60px 7%;
+  color:white;
+}
+.hero-content {max-width:650px}
+.hero h1 {
+  font-size:clamp(36px,6vw,64px);
+  margin:0 0 15px;
+  line-height:1.12;
+}
+.hero p {font-size:19px;line-height:1.6}
+.search {
+  display:flex;
+  background:white;
+  border-radius:9px;
+  padding:7px;
+  margin-top:25px;
+  max-width:580px;
+}
+.search input {
+  flex:1;
+  min-width:0;
+  border:0;
+  padding:14px;
+  font-size:16px;
+  outline:none;
+}
+button,.action {
+  background:var(--or);
+  color:#201d18;
+  border:0;
+  border-radius:6px;
+  padding:13px 19px;
+  font-weight:bold;
+  cursor:pointer;
+}
+main {max-width:1180px;margin:auto;padding:45px 20px}
+h2 {color:var(--vert);font-size:30px}
+.intro {color:#756b5c}
+.categories,.annonces {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px;
+  margin:25px 0 55px;
+}
+.category,.annonce {
+  background:white;
+  border:1px solid #e9e0d2;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 18px #382c1910;
+}
+.category {
+  text-align:center;
+  padding:28px 10px;
+  font-size:18px;
+}
+.category span {display:block;font-size:37px;margin-bottom:12px}
+.annonce .image {
+  background:#e5ddcf;
+  height:145px;
+  display:grid;
+  place-items:center;
+  font-size:55px;
+}
+.annonce .details {padding:17px}
+.annonce h3 {margin:0 0 9px;font-size:19px}
+.prix {color:#42604c;font-weight:bold;font-size:20px}
+footer {
+  text-align:center;
+  padding:30px 15px;
+  background:var(--vert);
+  color:#eee4d4;
+}
+@media(max-width:700px){
+  header {flex-direction:column;text-align:center}
+  nav {justify-content:center;gap:13px}
+  .hero {min-height:450px;padding:45px 22px}
+  .categories,.annonces {grid-template-columns:repeat(2,1fr)}
+  .search input {padding:10px}
+  .search button {padding:10px}
+}
+@media(max-width:360px){
+  .categories,.annonces {grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">⚜ Place des Échoppes</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="#categories">Découvrir</a>
+    <a href="#annonces">Les annonces</a>
+    <a href="#">Mes sélections</a>
+    <a href="#">Connexion</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Bienvenue sur la Place des Échoppes</h1>
+    <p>Un lieu de rencontres, de trouvailles et d'échanges.
+    Parcourez les échoppes et découvrez les trésors de chacun.</p>
+    <form class="search" onsubmit="chercher(event)">
+      <input id="recherche" placeholder="Que recherchez-vous ?"
+        aria-label="Rechercher une annonce">
+      <button type="submit">Chercher</button>
+    </form>
+  </div>
+</section>
+
+<main>
+  <section id="categories">
+    <h2>Explorez les quartiers marchands</h2>
+    <p class="intro">Chaque échoppe réserve ses découvertes.</p>
+    <div class="categories">
+      <div class="category"><span>🏺</span>Antiquités</div>
+      <div class="category"><span>🪑</span>Maison</div>
+      <div class="category"><span>📚</span>Livres</div>
+      <div class="category"><span>🧵</span>Mode et créations</div>
+      <div class="category"><span>🔧</span>Outils</div>
+      <div class="category"><span>🎨</span>Artisanat</div>
+      <div class="category"><span>🎮</span>Loisirs</div>
+      <div class="category"><span>📦</span>Autres trouvailles</div>
+    </div>
+  </section>
+
+  <section id="annonces">
+    <h2>Les trouvailles de la place</h2>
+    <p class="intro">Exemples d'annonces pour découvrir la présentation.</p>
+    <div class="annonces">
+      <article class="annonce" data-nom="livre ancien">
+        <div class="image">📖</div>
+        <div class="details">
+          <h3>Livre ancien</h3>
+          <p>Bel ouvrage de collection</p>
+          <div class="prix">35 €</div>
+        </div>
+      </article>
+      <article class="annonce" data-nom="vase céramique">
+        <div class="image">🏺</div>
+        <div class="details">
+          <h3>Vase en céramique</h3>
+          <p>Pièce décorative</p>
+          <div class="prix">24 €</div>
+        </div>
+      </article>
+      <article class="annonce" data-nom="coffret bois">
+        <div class="image">🪵</div>
+        <div class="details">
+          <h3>Coffret en bois</h3>
+          <p>Petit rangement artisanal</p>
+          <div class="prix">29 €</div>
+        </div>
+      </article>
+      <article class="annonce" data-nom="lanterne">
+        <div class="image">🏮</div>
+        <div class="details">
+          <h3>Lanterne décorative</h3>
+          <p>Ambiance chaleureuse</p>
+          <div class="prix">18 €</div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  ⚜ Place des Échoppes — Une place pour toutes les trouvailles
+</footer>
+
+<script>
+function chercher(e) {
+  e.preventDefault();
+  const q=document.getElementById("recherche").value
+    .toLowerCase().trim();
+  let visibles=0;
+  document.querySelectorAll(".annonce").forEach(a=>{
+    const ok=a.dataset.nom.includes(q);
+    a.style.display=ok?"":"none";
+    if(ok) visibles++;
+  });
+  document.getElementById("annonces").scrollIntoView({
+    behavior:"smooth"
+  });
+  if(!visibles) alert("Aucune annonce de démonstration trouvée.");
+}
+</script>
+</body>
+</html>
